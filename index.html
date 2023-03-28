@@ -7,34 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-     <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.css" type="text/css">
-     <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.js"></script>
+  <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.css" type="text/css">
+  <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.js"></script>
 
 
-     <script type="text/javascript">
-     //Initialize a map instance.
-     var map = new atlas.Map('map', {
-     view: "Auto",
-  //Add your Azure Maps subscription client ID to the map SDK.
-  authOptions: {
-    authType: "anonymous",
-    clientId: "04ec075f-3827-4aed-9975-d56301a2d663", //Your Azure Maps account Client ID is required to access your Azure Maps account.
-
-    getToken: function (resolve, reject, map) {
-      //URL to your authentication service that retrieves an Azure Active Directory Token.
-      var tokenServiceUrl = "https://azuremapscodesamples.azurewebsites.net/Common/TokenService.ashx";
-
-      fetch(tokenServiceUrl).then(r => r.text()).then(token => resolve(token));
+  <script type="text/javascript">
+    function InitMap() {
+      var map = new atlas.Map('myMap', {
+        center: [-74.0697479, 40.3083382],
+        zoom: 12,
+        language: 'en-US',
+        style: 'night',
+        authOptions: {
+          authType: 'subscriptionKey',
+          subscriptionKey: 'lJjExJLQQhKQxmJaFnOV7OcfkRqYR_vPrI7ZeKVgccI'
+        }
+      });
     }
-  }
-});
-
-//Wait until the map resources are ready.
-map.events.add('ready', function () {
-  //Add your post map load code here.
-
-});
-     </script>
+  </script>
 
 
 
@@ -60,17 +50,15 @@ map.events.add('ready', function () {
     p {
       font-family: "Lucida Console", Courier, monospace;
       font-style: normal;
-      text-align: start;
+      text-align: center;
     }
   </style>
 
 </head>
 
-<body>
-  <h1>Azure Maps</h1>
-  <h2>Neher Data Systems</h2>
-  <div id="map"></div>
-    
+<body onload="InitMap()">
+  <h1>Azure Maps | Neher Data Systems</h1>
+  <div id="myMap"></div>
 </body>
 
 <footer>
