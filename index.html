@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <title>Azure Maps | Neher Data Systems</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+     <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.css" type="text/css">
+     <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.js"></script>
+
+
+     <script type="text/javascript">
+     //Initialize a map instance.
+     var map = new atlas.Map('map', {
+     view: "Auto",
+  //Add your Azure Maps subscription client ID to the map SDK.
+  authOptions: {
+    authType: "anonymous",
+    clientId: "04ec075f-3827-4aed-9975-d56301a2d663", //Your Azure Maps account Client ID is required to access your Azure Maps account.
+
+    getToken: function (resolve, reject, map) {
+      //URL to your authentication service that retrieves an Azure Active Directory Token.
+      var tokenServiceUrl = "https://azuremapscodesamples.azurewebsites.net/Common/TokenService.ashx";
+
+      fetch(tokenServiceUrl).then(r => r.text()).then(token => resolve(token));
+    }
+  }
+});
+
+//Wait until the map resources are ready.
+map.events.add('ready', function () {
+  //Add your post map load code here.
+
+});
+     </script>
+
+
+
+  <style>
+    #myMap {
+      width: 100%;
+      height: 640px;
+
+    }
+
+    h1 {
+      font-family: "Lucida Console", Courier, monospace;
+      font-style: oblique;
+      text-align: center;
+    }
+
+    h2 {
+      font-family: "Lucida Console", Courier, monospace;
+      font-style: oblique;
+      text-align: center;
+    }
+
+    p {
+      font-family: "Lucida Console", Courier, monospace;
+      font-style: normal;
+      text-align: start;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>Azure Maps</h1>
+  <h2>Neher Data Systems</h2>
+  <div id="map"></div>
+    
+</body>
+
+<footer>
+  <p>© 2023 Neher Data Systems</p>
+</footer>
+
+</html>
